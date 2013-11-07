@@ -18,5 +18,5 @@ func main() {
 `
 
 func MakeWithMainTemplate() {
-	ioutil.WriteFile("main.go", []byte(s), 0x666)
+	ioutil.WriteFile("main.go", []byte(s), 0666)
 }
