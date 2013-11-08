@@ -3,6 +3,7 @@ package gonew
 type Template interface {
 	Name() string
 	Description() string
+	Usage() string
 	Make(args []string) error
 }
 
@@ -14,11 +15,17 @@ func (this TemplateContainer) RegistTemplate(name string, tmp Template) *Templat
 }
 
 func (this TemplateContainer) GetTemplate(name string) Template {
-	t, ok := this[name]
-	if ok {
-		return t
+	return this[name]
+}
+
+func (this TemplateContainer) GetTemplates() []Template {
+	tmps := make([]Template, len(this))
+	var i = 0
+	for _, v := range this {
+		tmps[i] = v
+		i = i + 1
 	}
-	return nil
+	return tmps
 }
 
 var c = &TemplateContainer{}
